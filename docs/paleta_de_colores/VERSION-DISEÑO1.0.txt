@@ -1,0 +1,695 @@
+# PROPUESTA DE IDENTIDAD VISUAL Y EXPERIENCIA DE USUARIO (UX/UI)
+
+**Proyecto:** Plataforma móvil innovadora para el desarrollo de habilidades académicas  
+**Tecnología de interfaz:** Flutter  
+**Arquitectura:** Feature-First  
+**Versión del diseño:** 1.0 — Propuesta inicial
+
+---
+
+## 1. Introducción
+
+El presente documento establece las bases del sistema de diseño visual de una aplicación móvil orientada al desarrollo de habilidades académicas mediante una metodología de aprendizaje propia.
+
+La plataforma busca diferenciarse de los modelos tradicionales de aplicaciones educativas. Por ello, su identidad no estará basada únicamente en cursos, cuestionarios, puntos o recompensas, sino en la creación de experiencias que promuevan la curiosidad, la exploración, el razonamiento, la experimentación y la construcción activa del conocimiento.
+
+Desde la perspectiva UX/UI, se propone un sistema visual adaptable que combine diversos estilos de diseño según el contexto de aprendizaje, manteniendo una identidad coherente en toda la aplicación.
+
+La propuesta contempla tres paletas cromáticas personalizables, siete estilos visuales complementarios y un sistema unificado de tipografía, componentes, formas y animaciones.
+
+## 2. Objetivos del sistema de diseño
+
+**Objetivo general**
+
+Desarrollar una identidad visual moderna, innovadora y adaptable que favorezca la interacción, la comprensión de los contenidos académicos y una experiencia de usuario coherente.
+
+**Objetivos específicos**
+
+1. Construir una identidad visual propia, diferenciada de las plataformas educativas convencionales.
+2. Permitir la personalización cromática según las preferencias individuales del usuario.
+3. Utilizar estilos visuales diferentes de acuerdo con las necesidades cognitivas y funcionales de cada pantalla.
+4. Mantener consistencia entre colores, tipografía, geometría, componentes y animaciones.
+5. Favorecer la lectura, el reconocimiento de controles y la navegación intuitiva.
+6. Reducir la carga visual innecesaria durante las actividades que requieren concentración.
+7. Facilitar la reutilización de componentes y estilos mediante un sistema de diseño compartido en Flutter.
+8. Garantizar accesibilidad y adaptación a diferentes tamaños de pantalla y características de los usuarios.
+
+---
+
+# 3. Sistema de paletas cromáticas
+
+La aplicación utilizará tres paletas principales denominadas **Aurora, Órbita y Prisma**.
+
+Estas paletas mantendrán la misma estructura de interfaz, navegación y funcionalidades. Su principal diferencia será la atmósfera visual, determinada por el color, la luminosidad y el contraste.
+
+La selección de la paleta será independiente del género del usuario. Cada persona podrá elegir el ambiente visual de su preferencia y modificarlo posteriormente desde la configuración de la aplicación.
+
+## 3.1. Paleta Aurora — Claridad y descubrimiento
+
+**Concepto:** ambiente luminoso, cristalino, moderno y tecnológico.
+
+Aurora representa una experiencia visual basada en la claridad, el equilibrio y la exploración. Sus tonalidades frías, combinadas con superficies blancas y acentos violetas, buscan crear una interfaz atractiva sin comprometer la legibilidad.
+
+| Función | Color | Código hexadecimal |
+|---|---|---|
+| Fondo principal | Blanco azulado | `#F3FAFD` |
+| Superficies | Blanco | `#FFFFFF` |
+| Color primario | Turquesa profundo | `#047D8A` |
+| Color secundario | Violeta | `#6F56D9` |
+| Texto principal | Azul carbón | `#172638` |
+| Superficies suaves | Turquesa pálido | `#D5F3F0` |
+| Acento cálido | Dorado suave | `#F3B76B` |
+
+**Características visuales:**
+
+- Fondos luminosos y superficies suaves.
+- Elementos cristalinos con transparencia controlada.
+- Degradados discretos entre tonos turquesa y violeta.
+- Iluminación difusa y reflejos moderados.
+- Tipografía oscura y de alta legibilidad.
+- Sensación de amplitud mediante espacios negativos.
+
+**Aplicación recomendada:** Splash, bienvenida, navegación general, exploración de contenidos, ejercicios y componentes principales.
+
+Aurora será la **paleta predeterminada inicial** de la aplicación.
+
+## 3.2. Paleta Órbita — Profundidad e inmersión
+
+**Concepto:** ambiente oscuro, sofisticado, inmersivo y tecnológico.
+
+Órbita utiliza fondos azulados profundos, elementos turquesa luminosos y acentos violetas. Está orientada a usuarios que prefieren interfaces oscuras y a experiencias en las que la visualización de relaciones, simulaciones y objetos interactivos adquiere mayor protagonismo.
+
+| Función | Color | Código hexadecimal |
+|---|---|---|
+| Fondo principal | Azul nocturno | `#11192B` |
+| Superficies | Azul pizarra | `#202D43` |
+| Color primario | Turquesa luminoso | `#49E0D3` |
+| Color secundario | Lavanda | `#A88FFF` |
+| Texto principal | Blanco frío | `#F5F9FF` |
+| Superficies suaves | Azul grisáceo | `#30445C` |
+| Acento | Amarillo solar | `#F6C453` |
+
+**Características visuales:**
+
+- Superficies oscuras con jerarquías claramente diferenciadas.
+- Objetos y nodos con iluminación localizada.
+- Reflejos suaves y sensación de profundidad.
+- Visualizaciones científicas con líneas y conexiones.
+- Contraste entre fondos profundos y elementos interactivos.
+- Elementos tridimensionales utilizados con moderación.
+
+**Aplicación recomendada:** laboratorios visuales, simulaciones, mapas conceptuales, exploración de relaciones y experiencias inmersivas.
+
+La paleta Órbita no se reservará exclusivamente para niños ni para usuarios masculinos: será una opción estética disponible para cualquier persona.
+
+## 3.3. Paleta Prisma — Creatividad y expresión
+
+**Concepto:** ambiente cálido, expresivo, contemporáneo y dinámico.
+
+Prisma emplea superficies claras con colores intensos y acentos cálidos. Busca ofrecer una experiencia visual con mayor personalidad expresiva sin perder claridad ni profesionalismo.
+
+| Función | Color | Código hexadecimal |
+|---|---|---|
+| Fondo principal | Blanco cálido | `#FFF7F3` |
+| Superficies | Blanco | `#FFFFFF` |
+| Color primario | Ciruela intenso | `#9B325F` |
+| Color secundario | Violeta profundo | `#6653CD` |
+| Texto principal | Carbón violáceo | `#2B243E` |
+| Superficies suaves | Melocotón pálido | `#FFE7DF` |
+| Acento | Amarillo solar | `#F6C453` |
+
+**Características visuales:**
+
+- Temperatura cromática más cálida.
+- Composiciones tipográficas expresivas.
+- Contrastes definidos entre elementos principales y secundarios.
+- Tarjetas claras con acentos de color.
+- Degradados delicados y formas orgánicas.
+- Diseño energético, pero visualmente equilibrado.
+
+**Aplicación recomendada:** bienvenida, contenido creativo, actividades de reflexión, pantallas editoriales y experiencias personalizadas.
+
+Prisma tampoco estará relacionada exclusivamente con el género femenino: su selección dependerá del gusto del usuario.
+
+## 3.4. Política de personalización cromática
+
+La plataforma permitirá seleccionar la apariencia preferida durante el proceso inicial de configuración.
+
+Se propone una pantalla denominada **Choose Your Experience**, donde se mostrarán vistas previas de las tres paletas.
+
+El usuario podrá:
+
+- Elegir Aurora, Órbita o Prisma.
+- Omitir la selección y mantener Aurora.
+- Modificar la paleta desde Ajustes.
+- Conservar su preferencia al volver a abrir la aplicación.
+
+La elección se almacenará inicialmente en el dispositivo. Cuando exista autenticación, podrá asociarse a la cuenta para sincronizarla entre dispositivos.
+
+**Principio de diseño:** la personalización debe ampliar las opciones del usuario, no asignarle una identidad estética por su género, edad o características personales.
+
+---
+
+# 4. Estilos visuales seleccionados
+
+Se propone combinar siete estilos de diseño con responsabilidades diferenciadas. No se utilizarán como identidades independientes, sino como variaciones de un único sistema visual.
+
+## 4.1. Glassmorphism + Kinetic Typography
+
+**Definición:** combinación de superficies translúcidas inspiradas en el vidrio con tipografía animada y elementos gráficos que aparecen, se desplazan o se transforman.
+
+**Características:**
+
+- Capas translúcidas.
+- Desenfoque de fondo controlado.
+- Reflejos luminosos.
+- Profundidad mediante superposición de superficies.
+- Aparición progresiva de símbolos y caracteres.
+- Movimientos tipográficos coordinados.
+
+**Aplicación principal:** Splash, presentación de marca, bienvenida y transiciones importantes.
+
+**Objetivo:** establecer una primera impresión sofisticada, distintiva y coherente con la identidad de la plataforma.
+
+El uso de transparencia será limitado para preservar la legibilidad y evitar un consumo gráfico innecesario.
+
+## 4.2. Neo-Swiss + Soft Bento
+
+**Definición:** combinación del diseño tipográfico suizo contemporáneo, basado en cuadrículas y jerarquías claras, con interfaces organizadas en tarjetas modulares.
+
+**Características:**
+
+- Tipografía de gran claridad.
+- Retículas consistentes.
+- Espaciado amplio.
+- Tarjetas de distintos tamaños.
+- Alineaciones precisas.
+- Predominio de información relevante.
+- Navegación visualmente ordenada.
+
+**Aplicación principal:** Home, navegación, catálogo de habilidades, progreso y perfil.
+
+**Objetivo:** permitir que el usuario localice contenidos y realice acciones rápidamente, sin perderse entre elementos decorativos.
+
+Este será uno de los estilos estructurales principales del producto.
+
+## 4.3. Scientific Lab
+
+**Definición:** enfoque visual inspirado en laboratorios, modelos científicos, redes conceptuales y sistemas de representación del conocimiento.
+
+**Características:**
+
+- Diagramas y nodos conectados.
+- Relaciones visuales entre conceptos.
+- Representaciones matemáticas.
+- Variables manipulables.
+- Visualizaciones dinámicas.
+- Retroalimentación sobre los cambios realizados.
+
+**Aplicación principal:** exploración de conocimientos, relaciones entre habilidades y simulaciones académicas.
+
+**Objetivo:** convertir parte de la interfaz en un instrumento para investigar y comprender, y no únicamente en un espacio donde se muestra información.
+
+Los gráficos deberán representar relaciones significativas, evitando conexiones meramente decorativas.
+
+## 4.4. Tactile UI
+
+**Definición:** estilo de interacción en el que los componentes presentan propiedades visuales y respuestas similares a objetos físicos manipulables.
+
+**Características:**
+
+- Objetos con volumen y profundidad moderada.
+- Sombras y relieves funcionales.
+- Piezas arrastrables.
+- Controles interactivos.
+- Cambios visuales al presionar o desplazar elementos.
+- Respuestas inmediatas y previsibles.
+
+**Aplicación principal:** ejercicios, simuladores, rompecabezas, experimentos y construcción de modelos.
+
+**Objetivo:** facilitar el aprendizaje mediante la manipulación directa de objetos y variables.
+
+Se priorizará la precisión de interacción por encima del realismo gráfico.
+
+## 4.5. Neo-Brutalism controlado
+
+**Definición:** variante refinada del neobrutalismo digital, caracterizada por contrastes fuertes, geometría definida y elementos visuales contundentes.
+
+**Características:**
+
+- Tipografía de alto impacto.
+- Bordes marcados.
+- Sombras definidas.
+- Botones sólidos.
+- Jerarquías visuales evidentes.
+- Uso limitado de colores intensos.
+
+**Aplicación principal:** desafíos breves, decisiones rápidas y acciones destacadas.
+
+**Objetivo:** generar energía visual en momentos específicos sin convertir toda la aplicación en una interfaz excesivamente estimulante.
+
+No se utilizará en pantallas que requieran lectura prolongada o concentración sostenida.
+
+## 4.6. Biophilic Design
+
+**Definición:** enfoque de diseño inspirado en formas, ritmos y características visuales de la naturaleza.
+
+**Características:**
+
+- Formas orgánicas.
+- Curvas suaves.
+- Ilustraciones naturales abstractas.
+- Distribución visual tranquila.
+- Colores equilibrados.
+- Animaciones lentas y discretas.
+
+**Aplicación principal:** reflexión, pausas voluntarias, actividades contemplativas y lectura tranquila.
+
+**Objetivo:** ofrecer un ambiente visual menos estimulante cuando la experiencia pedagógica requiera reflexión o concentración.
+
+No se asumirá que una estética natural mejora automáticamente el rendimiento académico; su efectividad deberá evaluarse con usuarios reales.
+
+## 4.7. Kinetic Typography
+
+**Definición:** uso expresivo del movimiento tipográfico para comunicar transiciones, relaciones e ideas.
+
+**Características:**
+
+- Aparición secuencial de palabras.
+- Transformación de tamaños y posiciones.
+- Desplazamiento coordinado con elementos gráficos.
+- Énfasis sobre conceptos importantes.
+- Transiciones entre estados de aprendizaje.
+
+**Aplicación principal:** Splash, bienvenida, resultados, descubrimientos y cambios de etapa.
+
+**Objetivo:** utilizar el movimiento para dirigir la atención hacia información relevante y reforzar la continuidad de la experiencia.
+
+Se evitarán animaciones innecesarias durante la lectura y se ofrecerá una alternativa de movimiento reducido.
+
+---
+
+# 5. Aplicación de los estilos en las primeras pantallas
+
+La combinación de estilos comenzará desde las primeras pantallas. Se aplicará una transición visual progresiva que introduzca la estructura y las interacciones de la plataforma sin romper la identidad presentada en el Splash.
+
+## 5.1. Pantalla 01 — Splash
+
+**Estilo principal:** Glassmorphism + Kinetic Typography.
+
+**Objetivo:** presentar la marca y realizar la transición inicial hacia la aplicación.
+
+**Características de diseño:**
+
+- Fondo derivado de la paleta seleccionada.
+- Logotipo geométrico original.
+- Materiales cristalinos y reflejos controlados.
+- Animación breve de aparición, conexión o transformación de los elementos del logotipo.
+- Nombre de la aplicación mediante tipografía moderna.
+- Composición centralizada y minimalista.
+
+**Paleta inicial:** Aurora, con posibilidad de utilizar Órbita o Prisma según la preferencia previamente guardada.
+
+**Interacción:** ninguna.
+
+**Duración orientativa:** animación de aproximadamente 0,8 a 1,5 segundos, sin prolongar artificialmente el arranque de la aplicación.
+
+**Transición:** el símbolo principal puede desplazarse, reducirse o transformarse en un elemento presente en la pantalla de bienvenida.
+
+La pantalla de lanzamiento nativa de Android también deberá utilizar colores compatibles para evitar cambios bruscos durante el inicio.
+
+## 5.2. Pantalla 02 — Welcome
+
+**Estilo principal:** Glassmorphism moderado + Neo-Swiss + Kinetic Typography.
+
+**Objetivo:** introducir la propuesta de valor de la aplicación y despertar curiosidad por la experiencia inicial.
+
+**Características:**
+
+- Continuidad cromática respecto al Splash.
+- Reducción del protagonismo del efecto cristalino.
+- Tipografía de mayor jerarquía.
+- Ilustración conceptual o geometría vinculada con el descubrimiento.
+- Botón principal claramente identificable.
+- Elementos visuales que anticipen futuras interacciones académicas.
+
+**Transición recomendada:** el logotipo del Splash disminuye su protagonismo mientras aparece el contenido de la bienvenida.
+
+**Acción principal:** comenzar la experiencia.
+
+**Resultado esperado:** el usuario comprende la intención general de la aplicación sin recibir información excesiva.
+
+## 5.3. Pantalla 03 — Onboarding / Initial Discovery
+
+**Estilo principal:** Neo-Swiss + Soft Bento + elementos Scientific Lab.
+
+**Objetivo:** presentar de manera breve la naturaleza interactiva del aprendizaje y permitir una primera aproximación a las habilidades académicas.
+
+**Características:**
+
+- Tarjetas claras y modulares.
+- Jerarquías tipográficas definidas.
+- Elementos geométricos y relaciones visuales.
+- Interacciones sencillas.
+- Textos breves.
+- Indicadores de progreso discretos.
+
+En lugar de presentar únicamente diapositivas informativas, se estudiará la posibilidad de incluir una pequeña interacción que permita al usuario experimentar cómo se aprende dentro de la plataforma.
+
+La definición final dependerá de la metodología pedagógica que adopte el equipo.
+
+## 5.4. Pantalla 04 — Personalización visual
+
+**Estilo principal:** Neo-Swiss + Soft Bento.
+
+**Objetivo:** permitir al usuario elegir el ambiente visual de su preferencia.
+
+**Características:**
+
+- Tres tarjetas principales: Aurora, Órbita y Prisma.
+- Vista previa de una misma interfaz bajo cada paleta.
+- Selección visual clara.
+- Botón de confirmación.
+- Opción para omitir la configuración.
+- Explicación breve de que los colores podrán cambiarse posteriormente.
+
+Esta pantalla deberá mostrar la personalización como una libertad de elección, no como una clasificación de usuarios.
+
+## 5.5. Pantalla 05 — Login / Register
+
+**Estilo principal:** Neo-Swiss minimalista, con pequeños detalles Glassmorphism.
+
+**Objetivo:** ofrecer autenticación sencilla y comprensible cuando resulte necesaria.
+
+**Características:**
+
+- Fondo limpio.
+- Títulos legibles.
+- Campos de entrada con límites bien definidos.
+- Botones sólidos y contrastados.
+- Posibilidad de autenticación mediante Google y correo electrónico, según las decisiones técnicas.
+- Mensajes de validación comprensibles.
+- Elementos decorativos mínimos.
+
+**Principio UX:** evitar que los efectos visuales compitan con los formularios o dificulten su uso.
+
+El momento definitivo en que se solicitará el registro dependerá de cómo se diseñe la primera experiencia educativa. No se considera obligatorio exigir una cuenta antes de permitir cualquier interacción.
+
+## 5.6. Pantalla 06 — Home
+
+**Estilo principal:** Neo-Swiss + Soft Bento.
+
+**Objetivo:** presentar las acciones y oportunidades de aprendizaje disponibles de manera organizada.
+
+**Características:**
+
+- Jerarquías claras.
+- Tarjetas modulares.
+- Espacios amplios.
+- Navegación consistente.
+- Indicadores de progreso comprensibles.
+- Acciones principales fácilmente localizables.
+- Uso funcional de la paleta seleccionada.
+
+La pantalla deberá priorizar actividades relevantes y evitar una concentración excesiva de estadísticas, recompensas o elementos visuales secundarios.
+
+---
+
+# 6. Estrategia de continuidad visual entre pantallas
+
+Para evitar que el paso desde un Splash cristalino hacia interfaces más estructuradas resulte brusco, se propone aplicar una estrategia de **transición visual progresiva**.
+
+### 6.1. Conservación de identidad
+
+Todas las pantallas compartirán:
+
+- La misma familia tipográfica principal.
+- Un sistema común de colores semánticos.
+- Reglas consistentes de espaciado.
+- Geometrías y bordes relacionados.
+- Iconografía unificada.
+- Patrones de movimiento coherentes.
+- Componentes reutilizables.
+
+### 6.2. Evolución gradual de materiales
+
+| Pantalla | Tratamiento visual |
+|---|---|
+| Splash | Cristal, reflejos e identidad de marca |
+| Welcome | Cristal moderado y tipografía estructurada |
+| Onboarding | Superficies mayormente sólidas y tarjetas |
+| Login | Superficies sólidas y elementos discretos |
+| Home | Sistema modular y legibilidad prioritaria |
+
+El efecto cristalino disminuirá progresivamente mientras aumenta el protagonismo de los componentes funcionales.
+
+### 6.3. Elementos compartidos
+
+Se propone reutilizar determinados elementos entre pantallas:
+
+- El símbolo principal de marca.
+- Formas geométricas características.
+- Colores de acento.
+- Patrones de conexión.
+- Detalles de iluminación.
+- Transiciones tipográficas.
+
+Por ejemplo, un símbolo compuesto por nodos podría aparecer inicialmente como logotipo y posteriormente utilizarse de forma simplificada en la representación de habilidades.
+
+### 6.4. Sistema de movimiento
+
+Las animaciones deberán seguir reglas comunes de duración, aceleración y propósito.
+
+Valores iniciales propuestos:
+
+| Animación | Duración orientativa |
+|---|---|
+| Respuesta a interacción | 100–200 ms |
+| Aparición de elementos | 200–350 ms |
+| Cambio entre pantallas | 250–450 ms |
+| Presentación inicial del logotipo | 800–1500 ms |
+
+Estos valores serán ajustados mediante pruebas en dispositivos reales.
+
+El movimiento deberá orientar, confirmar o explicar una acción. Se evitará introducir animaciones únicamente para aumentar la estimulación visual.
+
+---
+
+# 7. Sistema de diseño compartido
+
+El proyecto utilizará un conjunto de reglas y componentes reutilizables implementados en Flutter.
+
+## 7.1. Tipografía
+
+Se propone seleccionar una familia tipográfica sans serif contemporánea con excelente legibilidad en dispositivos móviles.
+
+Las candidatas iniciales incluyen:
+
+- Inter.
+- Manrope.
+- Plus Jakarta Sans.
+
+La elección final dependerá de pruebas con textos académicos, expresiones matemáticas, tamaños reducidos y diferentes resoluciones.
+
+Se propone definir una escala aproximada:
+
+| Elemento | Tamaño inicial |
+|---|---|
+| Título principal | 28–36 sp |
+| Título secundario | 22–26 sp |
+| Subtítulo | 18–20 sp |
+| Texto principal | 16 sp |
+| Texto secundario | 14–16 sp |
+| Etiquetas | 12–14 sp |
+
+Los tamaños deberán adaptarse al escalado de texto configurado por el usuario.
+
+## 7.2. Sistema de espaciado
+
+Se utilizará una escala consistente basada principalmente en múltiplos de cuatro:
+
+`4, 8, 12, 16, 24, 32 y 48`
+
+Esto permitirá mantener alineaciones y distancias previsibles entre componentes.
+
+## 7.3. Geometría
+
+Se propone utilizar:
+
+- Bordes ligeramente redondeados en controles.
+- Tarjetas con radios aproximados de 12–20 dp.
+- Formas circulares para nodos y conexiones.
+- Geometrías firmes para desafíos y componentes interactivos.
+- Esquinas y proporciones consistentes entre módulos.
+
+## 7.4. Componentes reutilizables
+
+Se desarrollarán componentes compartidos para:
+
+- Botones principales y secundarios.
+- Tarjetas informativas.
+- Indicadores de progreso.
+- Campos de texto.
+- Controles de selección.
+- Mensajes de error.
+- Indicadores de carga.
+- Modales y cuadros de diálogo.
+- Elementos de navegación.
+- Componentes de retroalimentación.
+
+La reutilización permitirá mantener una identidad homogénea y reducir inconsistencias entre el trabajo de diferentes integrantes.
+
+---
+
+# 8. Accesibilidad y factores cognitivos
+
+La selección cromática y los estilos visuales deben considerar tanto la percepción estética como la facilidad de uso.
+
+No existe evidencia suficiente para afirmar que un color determinado mejora universalmente la inteligencia, la memoria o el aprendizaje. Su influencia depende del contexto, la experiencia, las asociaciones culturales y las características individuales.
+
+Por tanto, el diseño se basará en principios verificables:
+
+### 8.1. Contraste
+
+Se adoptarán como objetivo los criterios WCAG AA:
+
+- Relación de contraste mínima de 4,5:1 para texto normal.
+- Relación mínima de 3:1 para texto grande.
+- Contraste suficiente en componentes e indicadores visuales relevantes.
+
+Como verificación inicial de las combinaciones propuestas, el texto principal sobre el fondo de cada paleta presenta relaciones de contraste aproximadas de:
+
+| Paleta | Contraste texto/fondo |
+|---|---:|
+| Aurora | 14,52:1 |
+| Órbita | 16,59:1 |
+| Prisma | 13,93:1 |
+
+Estos resultados corresponden únicamente a dichas combinaciones y no garantizan la accesibilidad de todos los componentes. Cada combinación de texto, fondo y estado interactivo deberá verificarse por separado.
+
+### 8.2. Jerarquía visual
+
+Los elementos importantes deberán identificarse mediante una combinación de tamaño, ubicación, espaciado, contraste y tipografía.
+
+### 8.3. Uso semántico del color
+
+No se utilizará exclusivamente el color para comunicar una respuesta correcta, un error o una advertencia.
+
+Se incorporarán textos, símbolos y mensajes comprensibles.
+
+### 8.4. Control del movimiento
+
+Se respetarán las preferencias de movimiento reducido cuando sea posible.
+
+Las animaciones no deberán dificultar la lectura, impedir acciones o bloquear innecesariamente la navegación.
+
+### 8.5. Adaptación a distintos públicos
+
+Las interfaces podrán ajustar la complejidad de instrucciones, la interacción y la presentación de contenidos según las necesidades del usuario y el contexto educativo.
+
+No se asumirá que todos los integrantes de una generación tienen el mismo estilo de aprendizaje ni las mismas preferencias visuales.
+
+---
+
+# 9. Implementación técnica en Flutter
+
+El sistema visual estará centralizado dentro de la carpeta `core/theme/`.
+
+Estructura propuesta:
+
+```text
+app/
+└── lib/
+    ├── core/
+    │   └── theme/
+    │       ├── app_colors.dart
+    │       ├── app_theme.dart
+    │       ├── app_typography.dart
+    │       ├── app_spacing.dart
+    │       └── app_motion.dart
+    │
+    └── features/
+        ├── splash/
+        ├── onboarding/
+        ├── auth/
+        └── home/
+```
+
+**Responsabilidades:**
+
+- `app_colors.dart`: valores y roles cromáticos.
+- `app_theme.dart`: configuración de temas visuales mediante `ThemeData` y `ColorScheme`.
+- `app_typography.dart`: jerarquías y estilos tipográficos.
+- `app_spacing.dart`: dimensiones y espaciados.
+- `app_motion.dart`: duraciones y curvas de animación.
+
+Los módulos utilizarán estas definiciones en lugar de declarar colores y estilos arbitrarios dentro de cada pantalla.
+
+Para los estilos de diseño se implementarán componentes reutilizables, como tarjetas cristalinas, tarjetas modulares, nodos científicos y controles táctiles, según las necesidades reales de cada funcionalidad.
+
+La selección de Aurora, Órbita o Prisma modificará los colores del tema sin duplicar las pantallas.
+
+Esta separación también facilitará el trabajo colaborativo mediante Git y GitHub.
+
+---
+
+# 10. Criterios de evaluación del diseño
+
+Antes de considerar definitiva una pantalla, se evaluarán los siguientes aspectos:
+
+**Identidad visual:** ¿La pantalla se reconoce como parte de la misma aplicación?
+
+**Claridad:** ¿El usuario identifica rápidamente la acción principal?
+
+**Legibilidad:** ¿Los contenidos son comprensibles y contrastan adecuadamente con el fondo?
+
+**Consistencia:** ¿Los elementos visuales respetan el sistema de diseño?
+
+**Interactividad:** ¿Las respuestas visuales son claras y previsibles?
+
+**Accesibilidad:** ¿La pantalla funciona con diferentes tamaños de texto y necesidades de interacción?
+
+**Rendimiento:** ¿Los efectos gráficos y animaciones funcionan adecuadamente en dispositivos Android de prestaciones moderadas?
+
+**Valor educativo:** ¿Los recursos visuales facilitan una acción de aprendizaje o tienen una justificación funcional?
+
+**Personalización:** ¿La pantalla conserva sus cualidades principales con las tres paletas?
+
+Se realizarán pruebas con usuarios reales antes de considerar que alguna combinación visual mejora la experiencia.
+
+---
+
+# 11. Resumen de decisiones de diseño
+
+| Elemento | Decisión |
+|---|---|
+| Sistema de paletas | Aurora, Órbita y Prisma |
+| Paleta predeterminada | Aurora |
+| Personalización | Elección individual, independiente del género |
+| Identidad estructural | Neo-Swiss |
+| Organización de interfaces | Soft Bento |
+| Experiencias de exploración | Scientific Lab |
+| Actividades manipulables | Tactile UI |
+| Retos breves | Neo-Brutalism controlado |
+| Reflexión y pausas | Biophilic |
+| Pantalla Splash | Glassmorphism + Kinetic Typography |
+| Animaciones y transiciones | Kinetic Typography y movimiento coherente |
+| Arquitectura Flutter | Feature-First |
+| Gestión de estilos | Sistema centralizado mediante ThemeData |
+| Principio principal | Innovación visual al servicio del aprendizaje |
+
+---
+
+# 12. Conclusión
+
+La identidad visual propuesta busca alcanzar un equilibrio entre innovación, claridad, personalización y funcionalidad educativa.
+
+La combinación de Aurora, Órbita y Prisma permitirá ofrecer diferentes ambientes cromáticos sin fragmentar la experiencia del usuario.
+
+Asimismo, la integración de Neo-Swiss, Soft Bento, Scientific Lab, Tactile UI, Neo-Brutalism, Biophilic Design, Glassmorphism y Kinetic Typography permitirá adaptar el lenguaje visual a cada contexto de interacción.
+
+La continuidad se garantizará mediante un sistema compartido de tipografía, colores semánticos, geometrías, componentes y movimientos.
+
+Finalmente, la innovación de la aplicación no dependerá exclusivamente de sus efectos visuales, sino de la relación que estos establezcan con una metodología educativa propia, orientada a desarrollar habilidades académicas mediante experiencias de exploración, experimentación y razonamiento.
+
+**Estado de la propuesta:** se consideran definidas las tres paletas y la dirección general de diseño. Permanecen sujetos a validación el logotipo, nombre definitivo, tipografía, componentes, animaciones, experiencia inicial de registro y metodología pedagógica final.
