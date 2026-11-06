@@ -1,0 +1,32 @@
+<svg width="512" height="512" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Fondo Squircle Aurora -->
+    <linearGradient id="kadir-aurora-bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#E5F2F6" />
+    </linearGradient>
+    <!-- Pilar Vertical Isométrico -->
+    <linearGradient id="kadir-aurora-pillar" x1="14" y1="12" x2="28" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#047D8A" />
+      <stop offset="100%" stop-color="#6F56D9" />
+    </linearGradient>
+  </defs>
+
+  <!-- Contenedor Base -->
+  <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#kadir-aurora-bg)" stroke="#047D8A" stroke-opacity="0.3" stroke-width="1.5" />
+
+  <!-- Columna Vertical Isométrica 3D -->
+  <polygon points="21,11 29,15 29,49 21,53 13,49 13,15" fill="url(#kadir-aurora-pillar)" />
+  <polygon points="21,11 29,15 21,19 13,15" fill="#FFFFFF" fill-opacity="0.45" />
+  <polygon points="13,15 21,19 21,53 13,49" fill="#000000" fill-opacity="0.18" />
+
+  <!-- Prisma Diagonal Superior 3D -->
+  <polygon points="26,30 44,13 51,17 33,34" fill="#6F56D9" fill-opacity="0.92" />
+  <polygon points="26,30 44,13 44,21 26,38" fill="#047D8A" fill-opacity="0.85" />
+
+  <!-- Prisma Diagonal Inferior 3D -->
+  <polygon points="28,28 51,45 44,51 23,34" fill="#F3B76B" fill-opacity="0.95" />
+
+  <!-- Vértice Central de Refracción de Cristal -->
+  <polygon points="26,26 33,32 26,38 19,32" fill="#FFFFFF" />
+</svg>
