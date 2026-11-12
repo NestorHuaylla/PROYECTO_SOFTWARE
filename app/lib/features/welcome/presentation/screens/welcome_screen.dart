@@ -5,8 +5,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../auth/presentation/screen/login_screen.dart';
 import '../../../auth/presentation/screen/register_screen.dart';
 import '../../../onboarding/presentation/screens/onboarding_screen.dart';
-import '../../../auth/presentation/screen/login_screen.dart';
-
+import '../../../settings/presentation/screens/theme_customization_screen.dart';
 /// Función auxiliar compatible con todas las versiones de Flutter sin warnings de linter
 Color _alpha(Color color, double opacity) {
   return color.withAlpha((opacity.clamp(0.0, 1.0) * 255).round());
