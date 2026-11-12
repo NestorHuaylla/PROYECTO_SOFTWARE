@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 enum KadirPaletteMode { aurora, orbita, prisma }
 
+// Alias para compatibilidad con widgets existentes
+typedef KadirPaletteColors = AppColors;
+
 class AppColors {
   final String name;
   final bool isDark;
@@ -31,7 +34,16 @@ class AppColors {
     required this.glassBorder,
   });
 
-  // Tokens oficiales de Cuarzo Pastel para los botones CTA
+  // Getters para compatibilidad con efectos Glassmorphism en Splash y Logo
+  Color get glassSpecularBorder => glassBorder;
+  Color get glassShardSurface => glassSurface;
+  Color get surfaceBorder => glassBorder;
+  Color get surfaceSoft => isDark ? const Color(0xFF19253D) : const Color(0xFFD5F3F0);
+
+  // Obtener paleta por modo (Aurora, Órbita, Prisma)
+  static AppColors fromMode(KadirPaletteMode mode) => palettes[mode]!;
+
+  // Tokens oficiales de Cuarzo Pastel para botones CTA
   static const List<Color> pastelQuartzPrimaryGradient = [
     Color(0xFFF3E8FF),
     Color(0xFFE9D5FF),
@@ -45,7 +57,7 @@ class AppColors {
     Color(0xFF581C87),
   ];
 
-  // Las 3 paletas oficiales de VERSION-DISEÑO1.0.txt
+  // Las 3 paletas oficiales del documento de diseño VERSION-DISEÑO1.0.txt
   static const Map<KadirPaletteMode, AppColors> palettes = {
     KadirPaletteMode.aurora: AppColors(
       name: 'Aurora',

@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/kadir_logo.dart';
-import '../../../onboarding/presentation/screens/welcome_screen.dart';
+import '../../../welcome/presentation/screens/welcome_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   final KadirPaletteMode initialMode;
@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen>
             transitionDuration: const Duration(milliseconds: 350),
             pageBuilder: (_, animation, __) => FadeTransition(
               opacity: animation,
-              child: const WelcomeScreen(),
+              child: WelcomeScreen(initialPalette: widget.initialMode),
             ),
           ),
         );
