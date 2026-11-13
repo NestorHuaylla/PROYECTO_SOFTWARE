@@ -90,7 +90,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     _ambientController.dispose();
     super.dispose();
   }
-  void _finishOnboarding() {
+    void _finishOnboarding() {
     if (widget.onComplete != null) {
       widget.onComplete!();
     } else {
@@ -98,6 +98,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
         MaterialPageRoute(builder: (_) => const RegisterScreen()),
       );
     }
+  }
+
   void _handleNext() {
     if (_currentStep < _kSlides.length - 1) {
       setState(() => _currentStep++);
@@ -105,8 +107,6 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       _finishOnboarding();
     }
   }
-  }
-
   void _handleBack() {
     if (_currentStep > 0) {
       setState(() => _currentStep--);
@@ -250,7 +250,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     );
   }
 
-  Widget _buildSkipButton(_AppColors colors) {
+  Widget _buildSkipButton(AppColors colors) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(999),
       child: BackdropFilter(
@@ -289,7 +289,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   }
 
   Widget _buildGlassStageCard(
-    _OnboardingColors colors,
+    AppColors colors,
     _OnboardingSlideData slide,
   ) {
     final stageBg = colors.isDark
@@ -326,7 +326,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                       _alpha(const Color(0xFF132036), 0.55),
                       _alpha(const Color(0xFF101726), 0.75),
                     ]
-                  : widget.initialPalette == OnboardingPaletteMode.prisma
+                  : widget.initialPalette == KadirPaletteMode.prisma
                       ? [
                           _alpha(const Color(0xFFFFEAE2), 0.55),
                           _alpha(Colors.white, 0.78),
@@ -524,7 +524,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     );
   }
 
-  Widget _buildStepIndicators(_AppColors colors) {
+  Widget _buildStepIndicators(AppColors colors) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(_kSlides.length, (index) {
