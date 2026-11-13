@@ -1,69 +1,9 @@
 import 'dart:math' as math;
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../auth/presentation/screen/register_screen.dart';
 
-/// Modos de paleta oficiales de KADIR (Misma paleta que WelcomeScreen)
-enum OnboardingPaletteMode { aurora, orbita, prisma }
-
-class _OnboardingColors {
-  final Color bgMain;
-  final Color surface;
-  final Color primary;
-  final Color secondary;
-  final Color textMain;
-  final Color accent;
-  final bool isDark;
-  final Color glassSurface;
-  final Color glassBorder;
-
-  const _OnboardingColors({
-    required this.bgMain,
-    required this.surface,
-    required this.primary,
-    required this.secondary,
-    required this.textMain,
-    required this.accent,
-    required this.isDark,
-    required this.glassSurface,
-    required this.glassBorder,
-  });
-}
-
-const Map<OnboardingPaletteMode, _OnboardingColors> _kPalettes = {
-  OnboardingPaletteMode.aurora: _OnboardingColors(
-    bgMain: Color(0xFFF3FAFD),
-    surface: Color(0xFFFFFFFF),
-    primary: Color(0xFF047D8A),
-    secondary: Color(0xFF6F56D9),
-    textMain: Color(0xFF172638),
-    accent: Color(0xFFF3B76B),
-    isDark: false,
-    glassSurface: Color(0xD6FFFFFF),
-    glassBorder: Color(0x29047D8A),
-  ),
-  OnboardingPaletteMode.orbita: _OnboardingColors(
-    bgMain: Color(0xFF070B14),
-    surface: Color(0xFF101726),
-    primary: Color(0xFF49E0D3),
-    secondary: Color(0xFFA88FFF),
-    textMain: Color(0xFFF5F9FF),
-    accent: Color(0xFFF6C453),
-    isDark: true,
-    glassSurface: Color(0xAD0C1220),
-    glassBorder: Color(0x24FFFFFF),
-  ),
-  OnboardingPaletteMode.prisma: _OnboardingColors(
-    bgMain: Color(0xFFFFF7F3),
-    surface: Color(0xFFFFFFFF),
-    primary: Color(0xFF9B325F),
-    secondary: Color(0xFF6653CD),
-    textMain: Color(0xFF2B243E),
-    accent: Color(0xFFF6C453),
-    isDark: false,
-    glassSurface: Color(0xD9FFFFFF),
-    glassBorder: Color(0x299B325F),
-  ),
-};
 
 class _OnboardingSlideData {
   final String step;
@@ -118,13 +58,13 @@ Color _alpha(Color c, double opacity) {
 class OnboardingScreen extends StatefulWidget {
   final VoidCallback? onComplete;
   final VoidCallback? onSkip;
-  final OnboardingPaletteMode initialPalette;
+  final KadirPaletteMode initialPalette;
 
   const OnboardingScreen({
     super.key,
     this.onComplete,
     this.onSkip,
-    this.initialPalette = OnboardingPaletteMode.aurora,
+    this.initialPalette = KadirPaletteMode.aurora,
   });
 
   @override
@@ -150,13 +90,21 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     _ambientController.dispose();
     super.dispose();
   }
-
+  void _finishOnboarding() {
+    if (widget.onComplete != null) {
+      widget.onComplete!();
+    } else {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const RegisterScreen()),
+      );
+    }
   void _handleNext() {
     if (_currentStep < _kSlides.length - 1) {
       setState(() => _currentStep++);
     } else {
-      widget.onComplete?.call();
+      _finishOnboarding();
     }
+  }
   }
 
   void _handleBack() {
@@ -167,7 +115,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
   @override
   Widget build(BuildContext context) {
-    final colors = _kPalettes[widget.initialPalette]!;
+    final colors = AppColors.fromMode(widget.initialPalette);
     final slide = _kSlides[_currentStep];
 
     return Scaffold(
@@ -302,7 +250,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     );
   }
 
-  Widget _buildSkipButton(_OnboardingColors colors) {
+  Widget _buildSkipButton(_AppColors colors) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(999),
       child: BackdropFilter(
@@ -313,7 +261,13 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             side: BorderSide(color: colors.glassBorder, width: 1),
           ),
           child: InkWell(
-            onTap: widget.onSkip ?? widget.onComplete,
+            onTap: () {
+        if (widget.onSkip != null) {
+          widget.onSkip!();
+              } else {
+            _finishOnboarding();
+               }
+                },  
             borderRadius: BorderRadius.circular(999),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),
@@ -570,7 +524,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     );
   }
 
-  Widget _buildStepIndicators(_OnboardingColors colors) {
+  Widget _buildStepIndicators(_AppColors colors) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(_kSlides.length, (index) {
@@ -599,7 +553,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     );
   }
 
-  Widget _buildBottomNavigation(_OnboardingColors colors) {
+  Widget _buildBottomNavigation(AppColors colors) {
     final pillBg = colors.isDark
         ? _alpha(const Color(0xFF101726), 0.68)
         : _alpha(Colors.white, 0.78);
