@@ -1,104 +1,40 @@
 import 'dart:math' as math;
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import '../../../../core/theme/app_colors.dart';
 
-/// Modos de paleta oficiales de KADIR
-enum KadirPaletteMode { aurora, orbita, prisma }
-
-class KadirPaletteColors {
-  final String id;
-  final String name;
+/// Datos visuales propios de esta pantalla (no son colores de la paleta oficial)
+class _ThemeCardMeta {
   final String modeBadge;
-  final Color bgMain;
-  final Color surface;
-  final Color surfaceBorder;
-  final Color primary;
-  final Color primaryText;
-  final Color secondary;
-  final Color textMain;
-  final Color textMuted;
-  final Color accent;
-  final bool isDark;
-  final Color glassSurface;
-  final Color glassBorder;
   final Alignment orbAlign;
+  final Color previewBorder;
 
-  const KadirPaletteColors({
-    required this.id,
-    required this.name,
+  const _ThemeCardMeta({
     required this.modeBadge,
-    required this.bgMain,
-    required this.surface,
-    required this.surfaceBorder,
-    required this.primary,
-    required this.primaryText,
-    required this.secondary,
-    required this.textMain,
-    required this.textMuted,
-    required this.accent,
-    required this.isDark,
-    required this.glassSurface,
-    required this.glassBorder,
     required this.orbAlign,
+    required this.previewBorder,
   });
-}
 
-const Map<KadirPaletteMode, KadirPaletteColors> kKadirPalettes = {
-  KadirPaletteMode.aurora: KadirPaletteColors(
-    id: 'aurora',
-    name: 'Aurora',
-    modeBadge: 'CLARO CRISTAL',
-    bgMain: Color(0xFFF3FAFD),
-    surface: Color(0xFFFFFFFF),
-    surfaceBorder: Color(0xFFE1EDF2),
-    primary: Color(0xFF047D8A),
-    primaryText: Color(0xFFFFFFFF),
-    secondary: Color(0xFF6F56D9),
-    textMain: Color(0xFF172638),
-    textMuted: Color(0xFF5C6E82),
-    accent: Color(0xFFF3B76B),
-    isDark: false,
-    glassSurface: Color(0xD6FFFFFF),
-    glassBorder: Color(0x29047D8A),
-    orbAlign: Alignment(-0.55, -0.55),
-  ),
-  KadirPaletteMode.orbita: KadirPaletteColors(
-    id: 'orbita',
-    name: 'Órbita',
-    modeBadge: 'OSCURO ABISAL',
-    bgMain: Color(0xFF070B14),
-    surface: Color(0xFF101726),
-    surfaceBorder: Color(0xFF1E2B45),
-    primary: Color(0xFF49E0D3),
-    primaryText: Color(0xFF051014),
-    secondary: Color(0xFFA88FFF),
-    textMain: Color(0xFFF5F9FF),
-    textMuted: Color(0xFF8CA2C0),
-    accent: Color(0xFFF6C453),
-    isDark: true,
-    glassSurface: Color(0xAD0C1220),
-    glassBorder: Color(0x24FFFFFF),
-    orbAlign: Alignment(0.45, -0.20),
-  ),
-  KadirPaletteMode.prisma: KadirPaletteColors(
-    id: 'prisma',
-    name: 'Prisma',
-    modeBadge: 'CÁLIDO EDITORIAL',
-    bgMain: Color(0xFFFFF7F3),
-    surface: Color(0xFFFFFFFF),
-    surfaceBorder: Color(0xFFF2DFD7),
-    primary: Color(0xFF9B325F),
-    primaryText: Color(0xFFFFFFFF),
-    secondary: Color(0xFF6653CD),
-    textMain: Color(0xFF2B243E),
-    textMuted: Color(0xFF716585),
-    accent: Color(0xFFF6C453),
-    isDark: false,
-    glassSurface: Color(0xD9FFFFFF),
-    glassBorder: Color(0x299B325F),
-    orbAlign: Alignment(-0.40, 0.25),
-  ),
-};
+  static const Map<KadirPaletteMode, _ThemeCardMeta> _byMode = {
+    KadirPaletteMode.aurora: _ThemeCardMeta(
+      modeBadge: 'CLARO CRISTAL',
+      orbAlign: Alignment(-0.55, -0.55),
+      previewBorder: Color(0xFFE1EDF2),
+    ),
+    KadirPaletteMode.orbita: _ThemeCardMeta(
+      modeBadge: 'OSCURO ABISAL',
+      orbAlign: Alignment(0.45, -0.20),
+      previewBorder: Color(0xFF1E2B45),
+    ),
+    KadirPaletteMode.prisma: _ThemeCardMeta(
+      modeBadge: 'CÁLIDO EDITORIAL',
+      orbAlign: Alignment(-0.40, 0.25),
+      previewBorder: Color(0xFFF2DFD7),
+    ),
+  };
+
+  static _ThemeCardMeta of(KadirPaletteMode mode) => _byMode[mode]!;
+}
 
 /// Helper para evitar el warning de .withOpacity()
 Color _alpha(Color c, double opacity) {
@@ -152,8 +88,8 @@ class _ThemeCustomizationScreenState extends State<ThemeCustomizationScreen>
 
   @override
   Widget build(BuildContext context) {
-    final colors = kKadirPalettes[_selectedMode]!;
-
+final colors = AppColors.fromMode(_selectedMode);
+final meta = _ThemeCardMeta.of(_selectedMode);
     return AnimatedContainer(
       duration: const Duration(milliseconds: 450),
       curve: Curves.easeOutCubic,
@@ -180,8 +116,8 @@ class _ThemeCustomizationScreenState extends State<ThemeCustomizationScreen>
                         duration: const Duration(milliseconds: 900),
                         curve: Curves.easeOutCubic,
                         alignment: Alignment(
-                          colors.orbAlign.x + dx1,
-                          colors.orbAlign.y + dy1,
+                          meta.orbAlign.x + dx1,
+                          meta.orbAlign.y + dy1,
                         ),
                         child: ImageFiltered(
                           imageFilter: ImageFilter.blur(sigmaX: 52, sigmaY: 52),
@@ -266,7 +202,7 @@ class _ThemeCustomizationScreenState extends State<ThemeCustomizationScreen>
                                   _buildTitleSection(colors),
                                   const SizedBox(height: 24),
                                   ...KadirPaletteMode.values.map((m) {
-                                    final item = kKadirPalettes[m]!;
+                                    final item = AppColors.fromMode(m);
                                     return Padding(
                                       padding: const EdgeInsets.only(bottom: 14),
                                       child: _buildPaletteCard(
@@ -515,7 +451,7 @@ class _ThemeCustomizationScreenState extends State<ThemeCustomizationScreen>
                           decoration: BoxDecoration(
                             color: itemColors.bgMain,
                             borderRadius: BorderRadius.circular(16),
-                            border: Border.all(color: itemColors.surfaceBorder),
+                            border: Border.all(color: _ThemeCardMeta.of(mode).previewBorder),
                           ),
                           child: Center(
                             child: Container(
@@ -551,7 +487,7 @@ class _ThemeCustomizationScreenState extends State<ThemeCustomizationScreen>
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              itemColors.modeBadge,
+                              _ThemeCardMeta.of(mode).modeBadge,
                               style: TextStyle(
                                 fontFamily: 'monospace',
                                 fontSize: 9.5,
