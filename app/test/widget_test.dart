@@ -27,4 +27,31 @@ void main() {
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
   });
+
+  testWidgets(
+    'Login demo validates credentials and opens its home screen',
+    (WidgetTester tester) async {
+      await tester.pumpWidget(const MyApp());
+
+      await tester.tap(find.text('Abrir demo de inicio de sesión'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Demo: inicio de sesión'), findsOneWidget);
+
+      await tester.tap(find.text('Iniciar sesión'));
+      await tester.pump();
+      expect(
+        find.text('Error: Los campos no pueden estar vacíos.'),
+        findsOneWidget,
+      );
+
+      await tester.enterText(find.byType(TextField).at(0), 'estudiante01');
+      await tester.enterText(find.byType(TextField).at(1), '123456');
+      await tester.tap(find.text('Iniciar sesión'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Bienvenido, estudiante01'), findsOneWidget);
+      expect(find.text('Consultar perfil'), findsOneWidget);
+    },
+  );
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:app/features/demo/presentation/screens/login_demo_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -108,6 +109,19 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            const SizedBox(height: 24),
+            OutlinedButton.icon(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LoginDemoScreen(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.play_arrow),
+              label: const Text('Abrir demo de inicio de sesión'),
             ),
           ],
         ),
