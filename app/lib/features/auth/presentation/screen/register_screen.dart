@@ -17,7 +17,7 @@ class RegisterScreen extends StatefulWidget {
 
   const RegisterScreen({
     super.key,
-    this.initialPalette = KadirPaletteMode.aurora,
+    this.initialPalette = KadirPaletteMode.orbita,
     this.isDarkMode = false,
     this.onBack,
     this.onGoToLogin,

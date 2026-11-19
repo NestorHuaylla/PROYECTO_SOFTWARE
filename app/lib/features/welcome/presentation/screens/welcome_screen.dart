@@ -87,7 +87,7 @@ class WelcomeScreen extends StatefulWidget {
     this.onStart,
     this.onLogin,
     this.onSelectTheme,
-    this.initialPalette = KadirPaletteMode.aurora,
+    this.initialPalette = KadirPaletteMode.orbita,
   });
 
   @override

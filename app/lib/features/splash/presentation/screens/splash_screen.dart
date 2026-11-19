@@ -10,7 +10,7 @@ class SplashScreen extends StatefulWidget {
 
   const SplashScreen({
     super.key,
-    this.initialMode = KadirPaletteMode.aurora,
+    this.initialMode = KadirPaletteMode.orbita,
   });
 
   @override
@@ -32,11 +32,18 @@ class _SplashScreenState extends State<SplashScreen>
       duration: const Duration(seconds: 18),
     )..repeat();
 
-    // Controlador para la barra de carga automática (1.8 segundos) y entrada
+        // Controlador para la barra de carga (3 segundos visibles después del primer frame)
     _loadController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1800),
-    )..forward();
+      duration: const Duration(milliseconds: 3000),
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(const Duration(milliseconds: 350), () {
+        if (mounted) _loadController.forward();
+      });
+    });
+   
 
     _loadController.addStatusListener((status) {
       if (status == AnimationStatus.completed && mounted) {

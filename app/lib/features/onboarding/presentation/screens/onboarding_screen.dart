@@ -2,7 +2,7 @@ import 'dart:math' as math;
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../auth/presentation/screen/register_screen.dart';
+import '../../../settings/presentation/screens/theme_customization_screen.dart';
 
 
 class _OnboardingSlideData {
@@ -64,7 +64,7 @@ class OnboardingScreen extends StatefulWidget {
     super.key,
     this.onComplete,
     this.onSkip,
-    this.initialPalette = KadirPaletteMode.aurora,
+    this.initialPalette = KadirPaletteMode.orbita,
   });
 
   @override
@@ -91,14 +91,18 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     super.dispose();
   }
     void _finishOnboarding() {
-    if (widget.onComplete != null) {
-      widget.onComplete!();
-    } else {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const RegisterScreen()),
-      );
-    }
+  if (widget.onComplete != null) {
+    widget.onComplete!();
+  } else {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (_) => ThemeCustomizationScreen(
+          initialMode: widget.initialPalette,
+        ),
+      ),
+    );
   }
+}
 
   void _handleNext() {
     if (_currentStep < _kSlides.length - 1) {

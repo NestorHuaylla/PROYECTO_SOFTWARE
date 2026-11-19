@@ -2,7 +2,7 @@ import 'dart:math' as math;
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
-
+import '../../../auth/presentation/screen/register_screen.dart';
 /// Datos visuales propios de esta pantalla (no son colores de la paleta oficial)
 class _ThemeCardMeta {
   final String modeBadge;
@@ -49,7 +49,7 @@ class ThemeCustomizationScreen extends StatefulWidget {
 
   const ThemeCustomizationScreen({
     super.key,
-    this.initialMode = KadirPaletteMode.aurora,
+    this.initialMode = KadirPaletteMode.orbita,
     this.onThemeChanged,
     this.onConfirm,
     this.onBack,
@@ -85,7 +85,38 @@ class _ThemeCustomizationScreenState extends State<ThemeCustomizationScreen>
     setState(() => _selectedMode = mode);
     widget.onThemeChanged?.call(mode);
   }
+  void _handleBack() {
+    if (widget.onBack != null) {
+      widget.onBack!();
+    } else {
+      Navigator.of(context).maybePop();
+    }
+  }
 
+  void _handleConfirm() {
+    if (widget.onConfirm != null) {
+      widget.onConfirm!();
+    } else {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => RegisterScreen(initialPalette: _selectedMode),
+        ),
+      );
+    }
+  }
+
+  void _handleSkip() {
+    if (widget.onConfirm != null) {
+      widget.onThemeChanged?.call(widget.initialMode);
+      widget.onConfirm!();
+    } else {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => RegisterScreen(initialPalette: widget.initialMode),
+        ),
+      );
+    }
+  }
   @override
   Widget build(BuildContext context) {
 final colors = AppColors.fromMode(_selectedMode);
@@ -237,7 +268,7 @@ final meta = _ThemeCardMeta.of(_selectedMode);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        if (widget.onBack != null)
+        if (widget.onBack != null || Navigator.of(context).canPop())
           ClipOval(
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
@@ -247,7 +278,7 @@ final meta = _ThemeCardMeta.of(_selectedMode);
                   side: BorderSide(color: colors.glassBorder, width: 1),
                 ),
                 child: InkWell(
-                  onTap: widget.onBack,
+                  onTap: _handleBack,
                   customBorder: const CircleBorder(),
                   child: SizedBox(
                     width: 38,
@@ -275,7 +306,7 @@ final meta = _ThemeCardMeta.of(_selectedMode);
                 side: BorderSide(color: colors.glassBorder, width: 1),
               ),
               child: InkWell(
-                onTap: widget.onConfirm,
+                onTap: _handleSkip,
                 borderRadius: BorderRadius.circular(999),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -616,7 +647,7 @@ final meta = _ThemeCardMeta.of(_selectedMode);
           child: Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: widget.onConfirm,
+              onTap: _handleConfirm,
               borderRadius: BorderRadius.circular(20),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 22),
