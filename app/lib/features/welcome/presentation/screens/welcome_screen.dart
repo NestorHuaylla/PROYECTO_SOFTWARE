@@ -1118,20 +1118,24 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   // ===========================================================================
   // 5. PIE DISCRETO
   // ===========================================================================
-  Widget _buildFooter(AppColors colors) {
+    Widget _buildFooter(AppColors colors) {
     return GestureDetector(
       onTap: _handleSelectTheme,
       child: Padding(
         padding: const EdgeInsets.only(top: 4),
-        child: Text(
-          'Personalizar atmósfera visual · Aurora / Órbita / Prisma',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontFamily: 'monospace',
-            fontSize: 10.5,
-            fontWeight: FontWeight.w500,
-            letterSpacing: 0.6,
-            color: _alpha(colors.textMuted, 0.78),
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            'Personalizar atmósfera visual · Aurora / Órbita / Prisma',
+            maxLines: 1,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: 'monospace',
+              fontSize: 10.5,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 0.4,
+              color: _alpha(colors.textMuted, 0.78),
+            ),
           ),
         ),
       ),

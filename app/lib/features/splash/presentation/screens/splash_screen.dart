@@ -74,12 +74,13 @@ class _SplashScreenState extends State<SplashScreen>
 
     return Scaffold(
       backgroundColor: colors.bgMain,
-      body: AnimatedBuilder(
+      body: SizedBox.expand(
+        child: AnimatedBuilder(
         animation: Listenable.merge([_ambientController, _loadController]),
         builder: (context, _) {
           final t = _ambientController.value * 2 * math.pi;
           final progress = Curves.easeOutCubic.transform(_loadController.value);
-
+        
           return Stack(
             alignment: Alignment.center,
             children: [
@@ -290,6 +291,7 @@ class _SplashScreenState extends State<SplashScreen>
             ],
           );
         },
+      ),
       ),
     );
   }

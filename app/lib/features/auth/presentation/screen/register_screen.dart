@@ -383,32 +383,39 @@ class _RegisterScreenState extends State<RegisterScreen>
                       ),
 
                       // CRISTAL 1 (Arriba-Derecha): Prisma Octaedro con Rotación 3D
+                                            // CRISTAL 1 (Arriba-Derecha): Prisma Octaedro en esquina superior
                       Align(
-                        alignment: const Alignment(0.84, -0.58),
-                        child: _build3DCrystalWrapper(
-                          angle: angleCrys,
-                          isUpper: true,
-                          glowColor: const Color(0xFF2DD4BF),
-                          child: CustomPaint(
-                            size: const Size(116, 116),
-                            painter: _OctahedronCrystal3DPainter(
-                              progress: tCrys,
+                        alignment: const Alignment(0.96, -0.82),
+                        child: Opacity(
+                          opacity: 0.72,
+                          child: _build3DCrystalWrapper(
+                            angle: angleCrys,
+                            isUpper: true,
+                            glowColor: const Color(0xFF2DD4BF),
+                            child: CustomPaint(
+                              size: const Size(88, 88),
+                              painter: _OctahedronCrystal3DPainter(
+                                progress: tCrys,
+                              ),
                             ),
                           ),
                         ),
                       ),
 
-                      // CRISTAL 2 (Abajo-Izquierda): Gema Hexagonal con Rotación 3D
+                      // CRISTAL 2 (Abajo-Izquierda): Gema Hexagonal en esquina inferior
                       Align(
-                        alignment: const Alignment(-0.86, 0.56),
-                        child: _build3DCrystalWrapper(
-                          angle: angleCrys,
-                          isUpper: false,
-                          glowColor: const Color(0xFF14B8A6),
-                          child: CustomPaint(
-                            size: const Size(106, 106),
-                            painter: _HexGemCrystal3DPainter(
-                              progress: (tCrys + 0.35) % 1.0,
+                        alignment: const Alignment(-0.92, 0.70),
+                        child: Opacity(
+                          opacity: 0.78,
+                          child: _build3DCrystalWrapper(
+                            angle: angleCrys,
+                            isUpper: false,
+                            glowColor: const Color(0xFF14B8A6),
+                            child: CustomPaint(
+                              size: const Size(90, 90),
+                              painter: _HexGemCrystal3DPainter(
+                                progress: (tCrys + 0.35) % 1.0,
+                              ),
                             ),
                           ),
                         ),
@@ -507,7 +514,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                                       RichText(
                                         text: TextSpan(
                                           style: TextStyle(
-                                            fontSize: 32,
+                                            fontSize: 29,
                                             height: 1.12,
                                             letterSpacing: -0.8,
                                             color: textMain,
@@ -837,83 +844,103 @@ class _RegisterScreenState extends State<RegisterScreen>
                                               ),
                                             ),
                                           ),
+
                                         ],
                                       ),
                                     ),
                                   ),
                                 ),
 
-                                const SizedBox(height: 16),
+                                                                const SizedBox(height: 20),
 
-                                // CÍRCULO DE GOOGLE FUERA Y DEBAJO DEL CUADRO DE CRISTAL
-                                // (Solo logo oficial de Google, con respiración suave)
+                                // SEPARADOR + BOTÓN CÁPSULA DE GOOGLE
                                 _buildStaggeredEnter(
                                   intervalStart: 0.35,
                                   intervalEnd: 0.95,
-                                  child: Center(
-                                    child: AnimatedBuilder(
-                                      animation: _ambientController,
-                                      builder: (context, child) {
-                                        final dy = math.sin(
-                                              _ambientController.value *
-                                                  2 *
-                                                  math.pi *
-                                                  3,
-                                            ) *
-                                            2.5;
-                                        return Transform.translate(
-                                          offset: Offset(0, dy),
-                                          child: child,
-                                        );
-                                      },
-                                      child: GestureDetector(
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: Divider(
+                                              color: _alpha(textMuted, 0.25),
+                                              thickness: 1,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 12,
+                                            ),
+                                            child: Text(
+                                              'O CONTINUAR CON',
+                                              style: TextStyle(
+                                                fontFamily: 'monospace',
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w700,
+                                                letterSpacing: 1.4,
+                                                color: _alpha(textMuted, 0.78),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Divider(
+                                              color: _alpha(textMuted, 0.25),
+                                              thickness: 1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 14),
+                                      GestureDetector(
                                         onTap: _isLoading
                                             ? null
                                             : _handleGoogleContinue,
-                                        child: ClipOval(
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(18),
                                           child: BackdropFilter(
                                             filter: ImageFilter.blur(
                                               sigmaX: 18,
                                               sigmaY: 18,
                                             ),
                                             child: Container(
-                                              width: 48,
-                                              height: 48,
+                                              width: double.infinity,
+                                              height: 50,
                                               decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
+                                                borderRadius:
+                                                    BorderRadius.circular(18),
                                                 color: pillGlassBg,
                                                 border: Border.all(
                                                   color: glassBorder,
-                                                  width: 1.4,
+                                                  width: 1.2,
                                                 ),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: isDark
-                                                        ? _alpha(
-                                                            Colors.black,
-                                                            0.35,
-                                                          )
-                                                        : _alpha(
-                                                            const Color(
-                                                              0xFF047D8A,
-                                                            ),
-                                                            0.14,
-                                                          ),
-                                                    blurRadius: 18,
-                                                    offset: const Offset(0, 6),
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  const CustomPaint(
+                                                    size: Size(20, 20),
+                                                    painter:
+                                                        _GoogleLogoPainter(),
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                  Text(
+                                                    'Continuar con Google',
+                                                    style: TextStyle(
+                                                      fontSize: 13.5,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      color: textMain,
+                                                    ),
                                                   ),
                                                 ],
-                                              ),
-                                              alignment: Alignment.center,
-                                              child: const CustomPaint(
-                                                size: Size(21, 21),
-                                                painter: _GoogleLogoPainter(),
                                               ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
+                                    ],
                                   ),
                                 ),
                               ],
