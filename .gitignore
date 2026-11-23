@@ -1,0 +1,21 @@
+# Python / Django
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.sqlite3
+
+# Secretos y variables de entorno (NUNCA subir a GitHub)
+.env
+backend/.env
+
+# Flutter / Android (respaldo raíz)
+app/build/
+app/.dart_tool/
+app/android/local.properties
+app/android/.gradle/
+
+# Editores y sistema
+.idea/
+.DS_Store
