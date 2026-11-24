@@ -6,6 +6,7 @@ import '../../../auth/presentation/screen/login_screen.dart';
 import '../../../onboarding/presentation/screens/onboarding_screen.dart';
 import '../../../settings/presentation/screens/theme_customization_screen.dart';
 import '../../../auth/data/auth_service.dart';
+import '../../../home/presentation/screens/kadir_shell_screen.dart';
 /// Helper seguro para evitar el warning de `.withOpacity()` en Flutter 3.27+
 Color _alpha(Color color, double opacity) {
   return color.withAlpha((opacity.clamp(0.0, 1.0) * 255).round());
@@ -157,19 +158,27 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       ),
     );
   }
-
-  void _handleLogin() {
+void _handleLogin() {
   if (widget.onLogin != null) {
     widget.onLogin!();
     return;
   }
   Navigator.of(context).push(
     MaterialPageRoute(
-      builder: (_) => LoginScreen(
+      builder: (loginContext) => LoginScreen(
         onBackendAuth: AuthService().login,
+        onLoginSuccess: () {
+          Navigator.of(loginContext).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (_) => KadirShellScreen(initialPalette: _mode),
+            ),
+            (route) => false,
+          );
+        },
       ),
     ),
   );
+
 }
   void _handleSelectTheme() {
     if (widget.onSelectTheme != null) {

@@ -507,7 +507,7 @@ class _KadirProgressScreenState extends State<KadirProgressScreen> {
           }),
 
           const SizedBox(height: 4),
-          Container(
+                    Container(
             padding: const EdgeInsets.only(top: 12),
             decoration: BoxDecoration(
               border: Border(top: BorderSide(color: palette.glassBorder)),
@@ -535,7 +535,10 @@ class _KadirProgressScreenState extends State<KadirProgressScreen> {
                     color: palette.primary,
                   ),
                 ),
-                          if (widget.onOpenSkills != null) ...[
+              ],
+            ),
+          ),
+          if (widget.onOpenSkills != null) ...[
             const SizedBox(height: 14),
             Material(
               color: Colors.transparent,
@@ -585,13 +588,11 @@ class _KadirProgressScreenState extends State<KadirProgressScreen> {
               ),
             ),
           ],
-              ],
-            ),
-          ),
         ],
       ),
     );
   }
+  
 
   /// TARJETA DERECHA (TAB 0): BITÁCORA DE NOTAS RÁPIDAS
   Widget _buildReflectionCard(KadirPalette palette) {

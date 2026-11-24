@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../data/auth_service.dart';
 import 'login_screen.dart';
-
+import '../../../home/presentation/screens/kadir_shell_screen.dart';
 Color _alpha(Color c, double opacity) =>
     c.withAlpha((opacity.clamp(0.0, 1.0) * 255).round());
 
@@ -121,14 +121,31 @@ class _RegisterScreenState extends State<RegisterScreen>
     _passFocus.dispose();
     super.dispose();
   }
-
+Route<void> _buildLoginRoute() {
+  final selectedPalette = widget.initialPalette;
+  return MaterialPageRoute(
+    builder: (loginContext) => LoginScreen(
+      onBackendAuth: AuthService().login,
+      onLoginSuccess: () {
+        Navigator.of(loginContext).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (_) => KadirShellScreen(
+              initialPalette: selectedPalette,
+            ),
+          ),
+          (route) => false,
+        );
+      },
+    ),
+  );
+}
   void _goToLogin() {
     if (widget.onGoToLogin != null) {
       widget.onGoToLogin!();
     } else {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => LoginScreen(onBackendAuth: AuthService().login)),
-      );
+  _buildLoginRoute(),
+);
     }
   }
 
@@ -180,7 +197,7 @@ class _RegisterScreenState extends State<RegisterScreen>
           widget.onRegisterSuccess!(formattedId, cleanAlias);
         } else {
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => LoginScreen(onBackendAuth: AuthService().login)),
+            _buildLoginRoute(),
           );
         }
       });
@@ -216,7 +233,7 @@ class _RegisterScreenState extends State<RegisterScreen>
           );
         } else {
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => LoginScreen(onBackendAuth: AuthService().login)),
+            _buildLoginRoute(),
           );
         }
       });
