@@ -5,7 +5,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../auth/presentation/screen/login_screen.dart';
 import '../../../onboarding/presentation/screens/onboarding_screen.dart';
 import '../../../settings/presentation/screens/theme_customization_screen.dart';
-
+import '../../../auth/data/auth_service.dart';
 /// Helper seguro para evitar el warning de `.withOpacity()` en Flutter 3.27+
 Color _alpha(Color color, double opacity) {
   return color.withAlpha((opacity.clamp(0.0, 1.0) * 255).round());
@@ -159,15 +159,18 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   }
 
   void _handleLogin() {
-    if (widget.onLogin != null) {
-      widget.onLogin!();
-      return;
-    }
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => const LoginScreen()),
-    );
+  if (widget.onLogin != null) {
+    widget.onLogin!();
+    return;
   }
-
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (_) => LoginScreen(
+        onBackendAuth: AuthService().login,
+      ),
+    ),
+  );
+}
   void _handleSelectTheme() {
     if (widget.onSelectTheme != null) {
       widget.onSelectTheme!();

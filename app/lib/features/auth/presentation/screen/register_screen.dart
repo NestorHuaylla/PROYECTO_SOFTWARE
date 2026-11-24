@@ -127,7 +127,7 @@ class _RegisterScreenState extends State<RegisterScreen>
       widget.onGoToLogin!();
     } else {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const LoginScreen()),
+        MaterialPageRoute(builder: (_) => LoginScreen(onBackendAuth: AuthService().login)),
       );
     }
   }
@@ -180,7 +180,7 @@ class _RegisterScreenState extends State<RegisterScreen>
           widget.onRegisterSuccess!(formattedId, cleanAlias);
         } else {
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const LoginScreen()),
+            MaterialPageRoute(builder: (_) => LoginScreen(onBackendAuth: AuthService().login)),
           );
         }
       });
@@ -216,7 +216,7 @@ class _RegisterScreenState extends State<RegisterScreen>
           );
         } else {
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const LoginScreen()),
+            MaterialPageRoute(builder: (_) => LoginScreen(onBackendAuth: AuthService().login)),
           );
         }
       });
