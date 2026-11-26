@@ -33,8 +33,7 @@ class AuthService {
           )
           .timeout(const Duration(seconds: 12));
 
-      final data = _decodificarJson(response.body);
-
+      final data = _decodificarRespuesta(response);
       if (response.statusCode == 201) {
         _guardarSesion(data);
         return true;
@@ -66,7 +65,7 @@ class AuthService {
         .timeout(const Duration(seconds: 12));
 
     if (response.statusCode == 200) {
-      final data = _decodificarJson(response.body);
+      final data = _decodificarRespuesta(response);
       _guardarSesion(data);
       return true;
     }
@@ -96,7 +95,9 @@ class AuthService {
         .timeout(const Duration(seconds: 10));
 
     if (response.statusCode == 200) {
-      currentUser = _decodificarJson(response.body);
+      currentUser = _decodificarRespuesta(response);
+
+  
       return currentUser;
     }
     return null;
@@ -120,11 +121,12 @@ class AuthService {
     }
   }
 
-  Map<String, dynamic> _decodificarJson(String body) {
-    if (body.isEmpty) return <String, dynamic>{};
-    final decoded = jsonDecode(utf8.decode(body.codeUnits));
-    return decoded is Map<String, dynamic> ? decoded : <String, dynamic>{};
-  }
+  Map<String, dynamic> _decodificarRespuesta(http.Response response) {
+  if (response.bodyBytes.isEmpty) return <String, dynamic>{};
+  final texto = utf8.decode(response.bodyBytes, allowMalformed: true);
+  final decoded = jsonDecode(texto);
+  return decoded is Map<String, dynamic> ? decoded : <String, dynamic>{};
+}
 
   String _extraerError(Map<String, dynamic> data, String porDefecto) {
     if (data['error'] is String) return data['error'] as String;

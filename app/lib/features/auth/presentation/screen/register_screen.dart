@@ -125,7 +125,9 @@ Route<void> _buildLoginRoute() {
   final selectedPalette = widget.initialPalette;
   return MaterialPageRoute(
     builder: (loginContext) => LoginScreen(
-      onBackendAuth: AuthService().login,
+      paletteMode: selectedPalette,
+      onBackendAuth: 
+      AuthService().login,
       onLoginSuccess: () {
         Navigator.of(loginContext).pushAndRemoveUntil(
           MaterialPageRoute(

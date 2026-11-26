@@ -166,7 +166,10 @@ void _handleLogin() {
   Navigator.of(context).push(
     MaterialPageRoute(
       builder: (loginContext) => LoginScreen(
-        onBackendAuth: AuthService().login,
+        paletteMode: _mode,
+        onBackendAuth:
+      
+        AuthService().login,
         onLoginSuccess: () {
           Navigator.of(loginContext).pushAndRemoveUntil(
             MaterialPageRoute(
