@@ -16,7 +16,7 @@ class KadirLoginScreen extends StatefulWidget {
   final VoidCallback? onGoogleContinue;
   final VoidCallback? onLoginSuccess;
   final Future<bool> Function(String usuario, String contrasena)? onBackendAuth;
-
+  final String? initialIdentifier;
   const KadirLoginScreen({
     super.key,
     this.paletteMode = KadirPaletteMode.orbita,
@@ -24,6 +24,7 @@ class KadirLoginScreen extends StatefulWidget {
     this.onGoToRegister,
     this.onGoogleContinue,
     this.onLoginSuccess,
+    this.initialIdentifier,
     this.onBackendAuth,
   });
 
@@ -50,6 +51,10 @@ class _KadirLoginScreenState extends State<KadirLoginScreen>
   @override
   void initState() {
     super.initState();
+    if (widget.initialIdentifier != null &&
+    widget.initialIdentifier!.isNotEmpty) {
+  _userController.text = widget.initialIdentifier!;
+}
     _ambientController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 9),

@@ -121,11 +121,12 @@ class _RegisterScreenState extends State<RegisterScreen>
     _passFocus.dispose();
     super.dispose();
   }
-Route<void> _buildLoginRoute() {
+Route<void> _buildLoginRoute({String? initialUser}) {
   final selectedPalette = widget.initialPalette;
   return MaterialPageRoute(
     builder: (loginContext) => LoginScreen(
       paletteMode: selectedPalette,
+      initialIdentifier: initialUser,
       onBackendAuth: 
       AuthService().login,
       onLoginSuccess: () {
@@ -195,11 +196,11 @@ Route<void> _buildLoginRoute() {
 
       Future.delayed(const Duration(milliseconds: 650), () {
         if (!mounted) return;
-        if (widget.onRegisterSuccess != null) {
+                if (widget.onRegisterSuccess != null) {
           widget.onRegisterSuccess!(formattedId, cleanAlias);
         } else {
           Navigator.of(context).pushReplacement(
-            _buildLoginRoute(),
+            _buildLoginRoute(initialUser: formattedId),
           );
         }
       });

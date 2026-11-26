@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 import '../../../auth/data/auth_service.dart';
 import '../../../settings/presentation/screens/theme_customization_screen.dart';
 import '../../../welcome/presentation/screens/welcome_screen.dart';
@@ -125,12 +125,13 @@ class _KadirShellScreenState extends State<KadirShellScreen> {
   }
 
   void _navigateTo(_KadirSubView target) {
-    if (_currentView == target) return;
-    setState(() {
-      _navStack.remove(target);
-      _navStack.add(target);
-    });
-  }
+  if (_currentView == target) return;
+  HapticFeedback.selectionClick();
+  setState(() {
+    _navStack.remove(target);
+    _navStack.add(target);
+  });
+}
 
   void _goBack() {
     if (_navStack.length <= 1) return;
@@ -265,8 +266,18 @@ class _KadirShellScreenState extends State<KadirShellScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return PopScope(
+Widget build(BuildContext context) {
+  final isDark = _paletteMode == KadirPaletteMode.orbita;
+  final iconBrightness = isDark ? Brightness.light : Brightness.dark;
+
+  return AnnotatedRegion<SystemUiOverlayStyle>(
+    value: SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: iconBrightness,
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarIconBrightness: iconBrightness,
+    ),
+    child: PopScope(
       canPop: _navStack.length <= 1,
       onPopInvokedWithResult: (didPop, _) {
         if (!didPop && _navStack.length > 1) {
@@ -279,9 +290,9 @@ class _KadirShellScreenState extends State<KadirShellScreen> {
         switchOutCurve: Curves.easeInCubic,
         child: _buildActiveScreen(),
       ),
-    );
-  }
-
+    ),
+  );
+}
   Widget _buildActiveScreen() {
     switch (_currentView) {
       case _KadirSubView.home:
